@@ -1,0 +1,81 @@
+<html>
+<head>
+<title> Feed the Fish </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+var background = new sjs.Image("shutterstock_1512728810.jpg");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "red");
+score_txt.right().offset(-20, 0);
+score_txt.fixed = true;
+sjs.onHit("player","worm", function(x,y){
+score = score + 1;
+score_txt.setText("Score :"+ score);
+localStorage.setItem("score", score);
+y.destroy();
+});
+sjs.onHit("player","trash",function(x,y){
+x.destroy
+window.location = "gameover.html"});
+//Player Properties
+var player = new sjs.Image("unnamed-1.png");
+player.type = "player";
+player.setSize(100,50);
+player.friction = .15;
+player.accel = .4;
+sjs.keyDown(RIGHT_KEY, function(){
+player.setImage("unnamed-1.png");
+player.pushRight();
+});
+sjs.keyDown(LEFT_KEY, function(){
+player.setImage("unnamed-1 copy.png");
+player.pushLeft();
+});
+sjs.keyDown(UP_KEY, function(){
+player.pushUp();
+});
+sjs.keyDown(DOWN_KEY, function(){
+player.pushDown();
+});
+//Worm
+setInterval(function(){
+var x = Math.floor(Math.random() * 783);
+var y = Math.floor(Math.random() * 470);
+var worm = new sjs.Image("wormthing.png");
+worm.type = "worm";
+worm.setGravity();
+worm.setSize(30,43);
+worm.noBounds = true;
+worm.moveTo(x, y);
+worm.friction = .2;
+}, 5000);
+sjs.onHit("worm","bottom_screen",function(x,y){
+x.destroy();
+});
+//Trash
+setInterval(function(){
+var x = Math.floor(Math.random() * 783);
+var y = Math.floor(Math.random() * 470);
+var trash = new sjs.Image("plastic.png");
+trash.type = "trash";
+trash.setGravity();
+trash.setSize(50,63);
+trash.noBounds = true;
+trash.moveTo(x, y);
+trash.friction = .2;
+}, 5000);
+sjs.onHit("trash","bottom_screen",function(x,y){
+x.destroy();
+});
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Feed the Fish </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+var menu_text = new sjs.Text("Feed the Fish",28,"yellow");
+menu_text.centerH();
+var game_text = new sjs.Text("Eat the worms to gain points. But don't eat the trash, or you'll get stuck! Good luck!",24,"red");
+game_text.centerH().offset(0, 30);
+var startBtn = new sjs.Button("Let's eat!", function(){
+window.location = "Feedthefish.html";
+});
+startBtn.center();
+var info_text = new sjs.Text("Created By Clara Graham",20,"yellow");
+info_text.bottom().centerH();
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Fish </h1>
+
+<div id="target" style="margin:auto;background:blue;"></div>
+</body>
+</html>
